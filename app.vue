@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+
 const bpm = ref(60);
 const play = ref(false);
 const beat = ref(1);
@@ -28,7 +29,7 @@ onMounted(() => {
   <div>
     <Toolbar v-model:play="play" v-model:bpm="bpm" v-model:beat="beat" />
     <client-only placeholder="loading...">
-      <canvas id="output" class="Item"></canvas>
+      <div id="output"></div>
     </client-only>
   </div>
 </template>

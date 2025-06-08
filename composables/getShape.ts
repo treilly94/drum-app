@@ -1,31 +1,20 @@
-import { Factory } from 'vexflow';
+import abcjs from "abcjs";
 
-const elementId: string = "output"
-
+const meta = `
+X:1
+L:1/16
+K:C clef=perc
+`
 const shapes: string[] = [
-  'C5/16, C5/16, C5/16, C5/16',
-  'C5/16, C5/16, C5/8',
-  'C5/16, C5/8, C5/16',
-  'C5/8, C5/16, C5/16',
-  'C5/16/r, C5/16, C5/16, C5/16'
+  'cccc',
+  'ccc2',
+  'cc2c',
+  'c2cc',
+  'zccc'
 ]
 
 export default function (): void {
-  const vf = new Factory({
-    renderer: { elementId: elementId, width: 500, height: 200 },
-  });
-
-  const score = vf.EasyScore();
-  const system = vf.System();
-
-  const num = Math.floor(Math.random() * shapes.length)
-
-  system
-    .addStave({
-      voices: [
-        score.voice(score.notes(shapes[num]), { time: "4/16" }),
-      ],
-    })
-
-  vf.draw();
+  const randNum = Math.floor(Math.random() * shapes.length);
+  const abc = meta + shapes[randNum]
+  abcjs.renderAbc('output', abc)
 }
