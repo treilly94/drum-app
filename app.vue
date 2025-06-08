@@ -1,40 +1,5 @@
 <script setup lang="ts">
 
-import { Factory } from 'vexflow';
-
-const elementId: string = "output"
-
-const shapes: string[] = [
-  'C5/16, C5/16, C5/16, C5/16',
-  'C5/16, C5/16, C5/8',
-  'C5/16, C5/8, C5/16',
-  'C5/8, C5/16, C5/16',
-  'C5/16/r, C5/16, C5/16, C5/16'
-]
-
-/**
- * This function renders a random shape
- */
-function getShape() {
-  const vf = new Factory({
-    renderer: { elementId: elementId, width: 500, height: 200 },
-  });
-
-  const score = vf.EasyScore();
-  const system = vf.System();
-
-  const num = Math.floor(Math.random() * shapes.length)
-
-  system
-    .addStave({
-      voices: [
-        score.voice(score.notes(shapes[num]), { time: "4/16" }),
-      ],
-    })
-
-  vf.draw();
-}
-
 const bpm = ref(60);
 const play = ref(false);
 const beat = ref(1);
@@ -61,24 +26,24 @@ onMounted(() => {
 
 <template>
   <div>
-    <div>
-      <Toggle v-model="play">
-        <Icon name="radix-icons:play" />
-      </Toggle>
-    </div>
+    <Toolbar v-model:play="play" v-model:bpm="bpm" v-model:beat="beat" />
     <client-only placeholder="loading...">
-      <UContainer>
-        <canvas id="output"></canvas>
-      </UContainer>
+      <canvas id="output" class="Item"></canvas>
     </client-only>
-    <p class="p-4">BPM: {{ bpm }}</p>
-    <p class="p-4">Play: {{ play }}</p>
-    <p class="p-4">Beat: {{ beat }}</p>
   </div>
 </template>
 
 <style lang="css">
 body {
-  @apply bg-sky-500;
+  @apply bg-cyan-100
+}
+
+.Item {
+  @apply flex items-center justify-center h-10 w-10 m-2 rounded-lg shadow-md
+}
+
+
+canvas {
+  @apply bg-cyan-50
 }
 </style>
