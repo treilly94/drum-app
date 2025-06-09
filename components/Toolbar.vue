@@ -22,6 +22,10 @@ const beat = defineModel('beat')
     @apply flex justify-center p-2 bg-cyan-600 shadow-md
 }
 
+.Item {
+    @apply flex items-center justify-center h-10 w-10 m-2 rounded-lg shadow-md
+}
+
 .Toggle {
     @apply data-[state=off]:bg-green-500 data-[state=on]:bg-red-500
 }
