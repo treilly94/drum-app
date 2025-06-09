@@ -4,9 +4,9 @@ L:1/16
 K:C clef=perc
 `
 
-export default function (): string {
+export default function (singleDrum: number): string {
     var abc = meta
-    for (let step = 0; step < 5; step++) {
+    for (let step = 0; step < singleDrum; step++) {
         abc += `| ${getShape()} ${getShape()} ${getShape()} ${getShape()} |\n`
     }
     abc += '|'

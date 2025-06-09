@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import abcjs from 'abcjs';
-
 const play = ref(false)
 const settings = ref({ bpm: 60, singleDrum: 5, multiDrum: 5 })
 const beat = ref(1)
@@ -8,22 +6,9 @@ const beat = ref(1)
 const abc = ref()
 const tunes = ref()
 
-function playMusic() {
-    abcjs.startAnimation("output", tunes.value[0], {
-        showCursor: true,
-        bpm: 60,
-    });
-}
-
-function stopMusic() {
-    abcjs.stopAnimation();
-    drawMusic(abc.value)
-}
-
 function reloadMusic() {
-    abc.value = generateMusic()
+    abc.value = generateMusic(settings.value.singleDrum)
     tunes.value = drawMusic(abc.value)
-    playMusic()
 }
 </script>
 
@@ -34,8 +19,6 @@ function reloadMusic() {
             <Icon v-else name="radix-icons:play" />
         </Toggle>
 
-        <button @click="playMusic()">play</button>
-
         <div class="Beat Item">
             {{ beat }}
         </div>
@@ -44,7 +27,7 @@ function reloadMusic() {
             <Icon name="radix-icons:reload" />
         </button>
 
-        <Settings />
+        <Settings v-model="settings" />
     </div>
 </template>
 

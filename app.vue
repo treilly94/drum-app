@@ -1,9 +1,6 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <div>
-    <Toolbar v-model:play="play" v-model:bpm="bpm" v-model:beat="beat" />
+    <Toolbar />
     <client-only placeholder="loading...">
       <div id="output" class="Music Current"></div>
     </client-only>

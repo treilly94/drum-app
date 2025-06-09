@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const settings: { bpm: number, singleDrum: number, multiDrum: number } = defineModel()
+</script>
+
 <template>
     <div>
         <PopoverRoot>
@@ -11,15 +15,15 @@
                             <p class="Title">Settings</p>
                             <fieldset>
                                 <label for="bpm"> BPM </label>
-                                <input id="bpm" defaultValue=60>
+                                <input id="bpm" v-model="settings.bpm">
                             </fieldset>
                             <fieldset>
                                 <label for="singleDrum"> Single Drum Bars </label>
-                                <input id="singleDrum" defaultValue=5>
+                                <input id="singleDrum" v-model="settings.singleDrum">
                             </fieldset>
                             <fieldset>
                                 <label for="multiDrum"> Multi Drum Bars </label>
-                                <input id="multiDrum" defaultValue=5>
+                                <input id="multiDrum" v-model="settings.multiDrum">
                             </fieldset>
                         </div>
                         <PopoverClose class="Close">
