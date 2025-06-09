@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const bpm = ref(60);
-const play = ref(false);
-const beat = ref(1);
 </script>
 
 <template>

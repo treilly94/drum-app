@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import abcjs from 'abcjs';
 
-const play = defineModel('play')
-const bpm = defineModel('bpm')
-const beat = defineModel('beat')
+const play = ref(false)
+const settings = ref({ bpm: 60, singleDrum: 5, multiDrum: 5 })
+const beat = ref(1)
 
 const abc = ref()
 const tunes = ref()
@@ -33,23 +33,18 @@ function reloadMusic() {
             <Icon v-if="play" name="radix-icons:pause" />
             <Icon v-else name="radix-icons:play" />
         </Toggle>
-        <Input class="Item" v-model="bpm" type="number" />
+
+        <button @click="playMusic()">play</button>
+
         <div class="Beat Item">
             {{ beat }}
         </div>
+
         <button class="Item Reload" @click="reloadMusic">
             <Icon name="radix-icons:reload" />
         </button>
-        <PopoverRoot>
-            <PopoverTrigger />
-            <PopoverAnchor />
-            <PopoverPortal>
-                <PopoverContent>
-                    <PopoverClose />
-                    <PopoverArrow />
-                </PopoverContent>
-            </PopoverPortal>
-        </PopoverRoot>
+
+        <Settings />
     </div>
 </template>
 
