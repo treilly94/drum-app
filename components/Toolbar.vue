@@ -1,7 +1,30 @@
 <script setup lang="ts">
+import abcjs from 'abcjs';
+
 const play = defineModel('play')
 const bpm = defineModel('bpm')
 const beat = defineModel('beat')
+
+const abc = ref()
+const tunes = ref()
+
+function playMusic() {
+    abcjs.startAnimation("output", tunes.value[0], {
+        showCursor: true,
+        bpm: 60,
+    });
+}
+
+function stopMusic() {
+    abcjs.stopAnimation();
+    drawMusic(abc.value)
+}
+
+function reloadMusic() {
+    abc.value = generateMusic()
+    tunes.value = drawMusic(abc.value)
+    playMusic()
+}
 </script>
 
 <template>
@@ -14,6 +37,19 @@ const beat = defineModel('beat')
         <div class="Beat Item">
             {{ beat }}
         </div>
+        <button class="Item Reload" @click="reloadMusic">
+            <Icon name="radix-icons:reload" />
+        </button>
+        <PopoverRoot>
+            <PopoverTrigger />
+            <PopoverAnchor />
+            <PopoverPortal>
+                <PopoverContent>
+                    <PopoverClose />
+                    <PopoverArrow />
+                </PopoverContent>
+            </PopoverPortal>
+        </PopoverRoot>
     </div>
 </template>
 
@@ -32,5 +68,9 @@ const beat = defineModel('beat')
 
 .Beat {
     @apply bg-cyan-500
+}
+
+.Reload {
+    @apply bg-pink-500
 }
 </style>

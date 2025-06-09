@@ -1,9 +1,9 @@
 const shapes: string[] = [
-  'cccc',
-  'ccc2',
-  'cc2c',
-  'c2cc',
-  'zccc'
+  '"R"c"L"c"R"c"L"c',
+  '"R"c"L"c"R"c2',
+  '"R"c"L"c2"L"c',
+  '"R"c2"R"c"L"c',
+  'z"L"c"R"c"L"c'
 ]
 
 

@@ -1,41 +1,14 @@
 <script setup lang="ts">
-
 const bpm = ref(60);
 const play = ref(false);
 const beat = ref(1);
-const shape1 = ref('');
-const shape2 = ref('');
-
-function incrementBeat() {
-  if (beat.value >= 4) {
-    beat.value = 1
-    shape1.value = shape2.value
-    shape2.value = getShape()
-    drawShapes(shape1.value, shape2.value)
-  }
-  else {
-    beat.value++;
-  }
-}
-
-onMounted(() => {
-  drawShapes(shape1.value, shape2.value)
-
-  setInterval(() => {
-    if (play.value) {
-      incrementBeat()
-    }
-  }, 60000 / bpm.value)
-})
-
 </script>
 
 <template>
   <div>
     <Toolbar v-model:play="play" v-model:bpm="bpm" v-model:beat="beat" />
     <client-only placeholder="loading...">
-      <div id="output1" class="Music Current"></div>
-      <div id="output2" class="Music Next"></div>
+      <div id="output" class="Music Current"></div>
     </client-only>
   </div>
 </template>
