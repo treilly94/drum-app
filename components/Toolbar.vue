@@ -7,7 +7,7 @@ const abc = ref()
 const tunes = ref()
 
 function reloadMusic() {
-    abc.value = generateMusic(settings.value.singleDrum)
+    abc.value = generateMusic(settings.value.singleDrum, settings.value.multiDrum)
     tunes.value = drawMusic(abc.value)
 }
 </script>
