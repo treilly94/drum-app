@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const settings: { bpm: number, singleDrum: number, multiDrum: number } = defineModel()
+const settings: { bpm: number, singleDrum: number, multiDrum: number, cymbals: boolean } = defineModel()
 </script>
 
 <template>
@@ -25,16 +25,23 @@ const settings: { bpm: number, singleDrum: number, multiDrum: number } = defineM
                                 <label for="multiDrum"> Multi Drum Bars </label>
                                 <input id="multiDrum" v-model="settings.multiDrum">
                             </fieldset>
+                            <div class="flex gap-2 items-center">
+                                <label for="cymbals"> Cymbals </label>
+                                <SwitchRoot id="cymbals" v-model="settings.cymbals" class="SwitchRoot">
+                                    <SwitchThumb class="SwitchThumb" />
+                                </SwitchRoot>
+                            </div>
+
                         </div>
                         <PopoverClose class="Close">
-                        <Icon name="radix-icons:cross-2" />
-                    </PopoverClose>
-                    <PopoverArrow class="fill-white stroke-gray-200" />
-                </div>
+                            <Icon name="radix-icons:cross-2" />
+                        </PopoverClose>
+                        <PopoverArrow class="fill-white stroke-gray-200" />
+                    </div>
                 </PopoverContent>
             </PopoverPortal>
         </PopoverRoot>
-        </div>
+    </div>
 </template>
 
 <style lang="css" scoped>
@@ -59,7 +66,7 @@ fieldset {
 }
 
 label {
-    @apply text-xs  w-[75px]
+    @apply text-xs w-[75px]
 }
 
 input {
@@ -68,5 +75,13 @@ input {
 
 .Close {
     @apply rounded-full h-[25px] w-[25px] inline-flex items-center justify-center absolute top-[8px] right-[8px] focus:shadow-[0_0_0_2px] outline-none cursor-default
+}
+
+.SwitchRoot {
+    @apply w-[32px] h-[20px] shadow-sm flex data-[state=unchecked]:bg-stone-300 data-[state=checked]:bg-green-500 border border-stone-300 rounded-full relative
+}
+
+.SwitchThumb {
+    @apply w-3.5 h-3.5 my-auto bg-white text-xs flex items-center justify-center shadow-xl rounded-full transition-transform translate-x-0.5 will-change-transform data-[state=checked]:translate-x-full
 }
 </style>

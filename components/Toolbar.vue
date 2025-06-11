@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const play = ref(false)
-const settings = ref({ bpm: 60, singleDrum: 5, multiDrum: 5 })
+const settings = ref({ bpm: 60, singleDrum: 5, multiDrum: 5, cymbals: false })
 const beat = ref(1)
 
 const abc = ref()
 const tunes = ref()
 
 function reloadMusic() {
-    abc.value = generateMusic(settings.value.singleDrum, settings.value.multiDrum)
+    abc.value = generateMusic(settings.value.singleDrum, settings.value.multiDrum, settings.value.cymbals)
     tunes.value = drawMusic(abc.value)
 }
 </script>

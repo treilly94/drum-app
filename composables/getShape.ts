@@ -6,23 +6,34 @@ const shapes: string[] = [
   'z"L"c"R"c"L"c'
 ]
 
-function getNote(): string {
-  const notes: string[] = [
+function getNote(cymbals: boolean): string {
+  var notes: string[]
+
+  const cymbalArray: string[] = [
     '!style=x!g', // HiHat
     '!style=x!f', // Ride
     "!style=x!A'", // Crash
+  ]
+
+  const drumArray: string[] = [
     'F', // Kick
     'c', // Snare
     'e', // High
     'd', // Mid
     'G' // Floor
   ]
+
+  if (cymbals) {
+    notes = cymbalArray.concat(drumArray)
+  }else {
+    notes = drumArray
+  }
   const randNum = Math.floor(Math.random() * notes.length);
   return notes[randNum]
 }
 
 
-export default function (multiDrum: boolean = false): string {
+export default function (multiDrum: boolean = false, cymbals: boolean = false): string {
 
   const randNum = Math.floor(Math.random() * shapes.length);
   var shape = shapes[randNum]
@@ -32,7 +43,7 @@ export default function (multiDrum: boolean = false): string {
     for (let step = 0; step < shape.length; step++) {
       const char = shape.charAt(step)
       if (char === 'c') {
-        multiShape += getNote()
+        multiShape += getNote(cymbals)
       }
       else {
         multiShape += char
