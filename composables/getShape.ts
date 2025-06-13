@@ -20,7 +20,7 @@ function getNote(cymbals: boolean): string {
     'c', // Snare
     'e', // High
     'd', // Mid
-    'G' // Floor
+    'A' // Floor
   ]
 
   if (cymbals) {
