@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@internationalized/number": "^3.6.3",
+    "@internationalized/number": "^3.6.5",
     "@nuxt/icon": "^1.13.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "abcjs": "^6.5.1",
