@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@internationalized/number": "^3.6.3",
-    "@nuxt/icon": "^1.13.0",
+    "@nuxt/icon": "^2.1.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "abcjs": "^6.5.1",
     "nuxt": "^3.17.5",
